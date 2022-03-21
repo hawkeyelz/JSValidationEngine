@@ -1,19 +1,11 @@
-const DefaultTask = (cb) =>{
+const gulp = require('gulp');
+
+// Entry Task
+gulp.task('default', (cb)=>{
+    return cb();
+});
+
+//copy html files
+gulp.task('copy html', () => {
     
-    cb();
-}
-
-const Logger = (cb, message, type='text') => {
-    const logger = {
-    text:() => { console.log(message)},
-    error: () =>  {console.error(message)}
-    };
-
-    logger[type]();
-    cb();
-}
-
-
-
-
-exports.default = DefaultTask
+});

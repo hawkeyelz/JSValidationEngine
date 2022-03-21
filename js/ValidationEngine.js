@@ -1,24 +1,4 @@
 
-const DefaultValidationFunctions = (RequestedvalidationFunction) => {
-  const formValidationFunctions = {
-    text: (domElement) => {
-      return domElement.value ? true : false;
-    },
-    date: (domElement) => {},
-    checkbox: (domElement) => {},
-    select: (domElement) => {},
-    radioGroup: (radioGroupElements) => {
-      radioGroupElements.forEach((domElement) => {
-        if (domElement.checked) {
-          return true;
-        }
-        return false;
-      });
-    },
-  };
-  return formValidationFunctions[RequestedvalidationFunction];
-};
-
 const GetNewEmptyValidationObject = () => {
   return {
     domElement: null,
@@ -53,23 +33,9 @@ const ToggleValid = (validationObject, isValid) => {
   }
 };
 
-const GetDomElementGroup = (Name) => {
-  const namedElements = document.getElementsByName(Name);
-  return namedElements;
-};
 
-const GetElementById = (ID) => {
-  try {
-    const element = document.getElementById(ID);
-    if (element) {
-      return element;
-    } else {
-      throw `An element with the ID of ${ID} was not found`;
-    }
-  } catch (error) {
-    return null;
-  }
-};
+
+
 
 const ObjectValidation = ( validationObject) => {
   const isValid = validationObject.validationFunction(validationObject.domElement);
@@ -78,15 +44,6 @@ const ObjectValidation = ( validationObject) => {
     isValid
   );
   return isValid;
-};
-
-const ValueInRegExArray = (regExArray = [], value) => {
-  regExArray.forEach((rgex) => {
-    if (value.match(regex)) {
-      return true;
-    }
-  });
-  return false;
 };
 
 const CheckDomElementForValidStatus = (domElement) => {
@@ -112,24 +69,24 @@ const AttachEvent = (validationObject,event) => {
 };
 
 const AttachEventsToValidationObject = (validationObject) => {
-  if (validationObject.event) {
-    if (Array.isArray(validationObject.event) && validationObject.event.length > 0) {
+  if (Array.isArray(validationObject.event) && validationObject.event.length > 0) {
+    if (validationObject.event) {
       validationObject.events.forEach((event) => {
         AttachEvent(validationObject, event);
       });
     }
-    else {
+  }
+  else {
       AttachEvent(validationObject, validationObject.event);
     }
-  }
 };
 
 const ValidationInit = (
   validationObjects = []
-) => {
-  if (validationObjects.length > 0) {
-    validationObjects.forEach((validationObject) => {
-      AttachEventsToValidationObject(validationObject);
-    });
-  }
+  ) => {
+    if (validationObjects.length > 0) {
+      validationObjects.forEach((validationObject) => {
+        AttachEventsToValidationObject(validationObject);
+      });
+    }
 };

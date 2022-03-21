@@ -4,7 +4,10 @@
   "description": "javascript form validation",
   "main": "index.html",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "run":  "run not yet created",
+    "watch": "watch not yet created",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "gulp"
   },
   "author": "Chris Harden",
   "license": "ISC",

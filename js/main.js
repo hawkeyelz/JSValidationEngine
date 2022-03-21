@@ -6,17 +6,24 @@ window.addEventListener(
     },
     false
   );
-
   const Main = () => {
     const submitBtn  = document.getElementById('Submit');
     submitBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        ValidateForm(ValidationObjects);
+      e.preventDefault();
+      ValidateForm(ValidationObjects);
+      const maskel = GetElementById('dob');
     });
+    
+    const lastName = CreateValidationObject('Last');
+    lastName.validationFunction = GetDefaultValidationFunction('text');
+    const ValidationObjects = [lastName];
+    
+const dobDomElement = GetElementById('Dob');
 
-   const lastName = CreateValidationObject('Last');
-   lastName.validationFunction = DefaultValidationFunctions('text');
-   const ValidationObjects = [lastName];
+console.log(dobDomElement);
+  CreateMask(dobDomElement, ()=> {
+  console.log('mask now');
+});
 
     ValidationInit(ValidationObjects,);
   }
